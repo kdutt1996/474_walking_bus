@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            width: 80%;
+            height: 94%;
+            float: right;
+          }
+          /* Optional: Makes the sample page fill the window. */
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+          #groupList{
+              width:30%;
+          }
+        </style>
+    </head>
+    
+	<body>
+    <h1>Map</h1>
+    <div id="escape">
+      <p><a href="{{ url_for('home')}}">Back to Home</a></p>
+    </div>
+		<div id="groupList">	
+      {% if groups %}
+      <div id='list'>
+        <ul>
+      {% for grp in groups %}  
+        <li>
+          <a href="{{ url_for('showgrp', id=grp[0]) }}">{{grp[1]}}</a>
+        </li>
+      {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div id='map'></div>
+    <script src="{{ url_for('static', filename='js/initMap.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi7IZfskjuNG3iosxnAL5KH2gSdWbZ0Bg&callback=initMap"
+    async defer></script>
+	</body>
+</html>

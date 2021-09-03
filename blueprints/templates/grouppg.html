@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Group - {{ grp_detail[1] }}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</head>
+<body>
+    <div id="escape">
+        <p><a href="{{ url_for('showmap')}}">Back to Group List</a></p>
+    </div>
+    <div class="msg">{{ msg }}</div>
+    <h3>Group - {{ grp_detail[1] }}</h3>
+    <h5>Group Description</h5>
+    <p>{{ grp_detail[2] }}</p>
+    <br>
+    
+    {% if isMember == 1 or isOwner == 1 %}
+        <h5>Actions</h5>
+        <ul>
+            <li>Check Group Routes</li>
+            {% if isOwner%}
+                <li><a href="{{ url_for('addroute', groupid=grp_detail[0]) }}">Add Route</a></li>
+                <li>Transfer Ownership</li>
+            {% endif %}
+            <li>Leave Group</li>
+        </ul>
+
+        <h5>Member List</h5>
+        <table>
+            <tr>
+                <th>User Email</th>
+                <th>User Type</th>
+                <th>Group Role</th>
+            </tr>
+            {% for member in members %}
+                <tr>
+                    <td>{{ member[0] }}</td>
+                    <td>{{ member[1] }}</td>
+                    <td>{{ member[2] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if isMember == 0 and isOwner == 0 %}
+        <a href="{{ url_for('joingrp', id=grp_detail[0]) }}">Join Group</p>
+    {% endif %}
+
+
+</body>
+</html>

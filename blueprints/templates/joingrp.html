@@ -1,0 +1,6 @@
+{% extends "success.html" %}
+
+{% block msg %}
+    <h3>{{ msg }}</h3>
+    <p>Click <a href="{{ url_for('showgrp', id=id) }}">here</a> to return to group page</p>
+{% endblock %}

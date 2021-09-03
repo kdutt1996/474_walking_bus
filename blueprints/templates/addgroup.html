@@ -1,0 +1,6 @@
+{% extends "success.html" %}
+
+{% block msg %}
+    <h3>{{ msg }}</h3>
+    <p>Click <a href="{{ url_for('home') }}">here</a> to return to home</p>
+{% endblock %}

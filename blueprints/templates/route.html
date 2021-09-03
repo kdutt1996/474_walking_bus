@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create Group</title>
+    <meta name="viewport" content="initial-scale=1.0">
+      <meta charset="utf-8">
+      <style>
+        /* Always set the map height explicitly to define the size of the div
+          * element that contains the map. */
+        #map {
+          width: 80%;
+          height: 94%;
+          float: right;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #sidebar{
+          width:30%;
+        }
+      </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  </head>
+  <body>
+    <!-- check if user is in the group, dont provide features and member list if not member -->
+    <div id="escape">
+        <p><a href="{{ url_for('showmap')}}">Back to Group List</a></p>
+    </div>
+    <h1>Add Route</h1>
+		<div id="sidebar">	
+      <button type="button" id="startbut">Pick Starting Point</button>
+      <button type="button" id="endbut">Pick Destination</button>
+      <form action="{{ url_for('addroute', groupid=groupid) }}" method="post">
+        <label>Starting coordinates</label><br>
+        <label for="sLat">Lat</label>
+        <input type="text" name="sLat" id="sLat" readonly required>
+        <label for="sLng">Lon</label>
+        <input type="text" name="sLng" id="sLng" readonly required>
+        <br>
+        <label>Destination coordinates</label><br>
+        <label for="dLat">Lat</label>
+        <input type="text" name="dLat" id="dLat" readonly required>
+        <label for="dLng">Lon</label>
+        <input type="text" name="dLng" id="dLng" readonly required>
+        <br>
+        <!-- <label for="stime">Start time:</label>
+        <input type="datetime-local" id="stime" name="stime" required>
+        <label for="etime">End time:</label>
+        <input type="datetime-local" id="etime" name="etime" required> -->
+        <input type="submit" value="Create Route">
+      </form>
+    </div>
+    <div id='map'></div>
+    <script src="{{ url_for('static', filename='js/route.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi7IZfskjuNG3iosxnAL5KH2gSdWbZ0Bg&callback=initMap"
+    async defer></script>
+  </body>
